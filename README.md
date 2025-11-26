@@ -13,6 +13,8 @@ Search any city and get real-time AQI, pollutant breakdowns, charts, and environ
  <img src="https://img.shields.io/badge/Express.js-Backend-blue?style=for-the-badge" />
  <img src="https://img.shields.io/badge/React-Frontend-blue?style=for-the-badge" />
  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
+ <img src="https://img.shields.io/badge/React%20with%20Vite-FE5F55?style=for-the-badge&logo=react&logoColor=white" />
+
 </p>
 
 ---
