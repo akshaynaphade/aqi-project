@@ -20,15 +20,15 @@ Search any city and get real-time AQI, pollutant breakdowns, charts, and environ
 ## 🛠️ Tech Stack
 
 ### Frontend (UI Layer)
-* [cite_start]**React.js (Vite):** Chosen to fulfill the requirement for a front-end layer rendering content using toolsets like React.js[cite: 4].
-* [cite_start]**Tailwind CSS:** Utilized under the freedom to choose your own UI libraries to create a clean look and feel[cite: 8].
-* [cite_start]**Chart.js:** Implemented to meet the bonus requirement of displaying rich information and interesting attributes around air quality[cite: 1, 7].
-* **Axios:** Used to communicate with the backend service.
+* React.js (Vite): Chosen to fulfill the requirement for a front-end layer rendering content using toolsets like React.js.
+* Tailwind CSS: Utilized under the freedom to choose your own UI libraries to create a clean look and feel.
+* Chart.js: Implemented to meet the bonus requirement of displaying rich information and interesting attributes around air quality.
+* Axios: Used to communicate with the backend service.
 
 ### Backend (Web Service)
-* [cite_start]**Node.js & Express.js:** Used to develop the Web Service component serving RESTful APIs as specified[cite: 4].
-* [cite_start]**node-cache:** Implements in-memory caching to cache vendor responses, provide speedier results, and handle cache expiry/max entries[cite: 5, 6].
-* [cite_start]**Axios:** Used to fetch details from the external API provider[cite: 4].
+* [cite_start]**Node.js & Express.js:** Used to develop the Web Service component serving RESTful APIs as specified.
+* node-cache: Implements in-memory caching to cache vendor responses, provide speedier results, and handle cache expiry/max entries.
+* Axios: Used to fetch details from the external API provider.
 
 ---
 
