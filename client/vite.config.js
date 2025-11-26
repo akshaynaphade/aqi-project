@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://your-backend-url.onrender.com'
+      '/api': 'https://aqi-project-r329.onrender.com/'
     }
   }
 })
