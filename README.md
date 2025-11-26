@@ -23,7 +23,6 @@ Search any city and get real-time AQI, pollutant breakdowns, charts, and environ
 
 ## 📸 Screenshots / Project Images
 
-Example gallery (replace with your links):
 
 | Dashboard Preview | Pollutant Modal | Features |
 |-------------------|---------------|------------------|
