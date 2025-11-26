@@ -26,7 +26,7 @@ Search any city and get real-time AQI, pollutant breakdowns, charts, and environ
 * Axios: Used to communicate with the backend service.
 
 ### Backend (Web Service)
-* [cite_start]**Node.js & Express.js:** Used to develop the Web Service component serving RESTful APIs as specified.
+* Node.js & Express.js: Used to develop the Web Service component serving RESTful APIs as specified.
 * node-cache: Implements in-memory caching to cache vendor responses, provide speedier results, and handle cache expiry/max entries.
 * Axios: Used to fetch details from the external API provider.
 
