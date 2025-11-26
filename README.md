@@ -36,7 +36,7 @@ Example gallery (replace with your links):
 
 | Dashboard Preview | Search Screen | Pollutant Modal |
 |-------------------|---------------|------------------|
-| ![Dash](screenshots/Capture11.PNG) | ![Search](IMAGE_URL_2) | ![Info](IMAGE_URL_3) |
+| ![Dash](screenshots/Capture11.PNG) | ![Info](screenshots/Capture22.PNG) | ![Features](screenshots/Capture33.PNG) |
 
 **Tip:** GitHub will render images on the README automatically when you push the files. You can also use relative paths to images stored in `/client/public/screenshots/`.
 
