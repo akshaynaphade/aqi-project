@@ -31,7 +31,6 @@ Search any city and get real-time AQI, pollutant breakdowns, charts, and environ
 ---
 
 ## 📸 Screenshots / Project Images
-I chose the **Modern Gradient UI**. To add screenshots, upload them somewhere (GitHub repo, Imgur, Cloudinary, or any CDN) and replace the `IMAGE_URL_x` placeholders below with the real URLs.
 
 Example gallery (replace with your links):
 
