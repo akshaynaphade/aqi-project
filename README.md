@@ -82,8 +82,7 @@ Example `.env` (server/.env):
 ```
 PORT=5000
 AQI_API_TOKEN=your_aqicn_token_here
-CACHE_MAX_ENTRIES=50
-CACHE_TTL_MINUTES=30
+
 ```
 
 ### Endpoint: Get AQI by city
@@ -134,7 +133,7 @@ curl "http://localhost:5000/api/aqi/mumbai"
 
 ---
 
-## 🧠 Caching Strategy (required by assignment)
+## 🧠 Caching Strategy (as required)
 A caching layer is implemented to reduce calls to AQICN and improve performance for repeated queries.
 
 **Parameters (configurable via env):**
@@ -161,8 +160,8 @@ Edge cases handled:
   - Search box with debounce (300ms) and simple client-side suggestions.
   - AQI card showing numeric AQI, color-coded category (Good→Hazardous), and dominant pollutant.
   - Pollutant breakdown (PM2.5, PM10, NO₂, SO₂, O₃, CO) with a bar chart (e.g., Chart.js or Recharts).
-  - Timestamp & station info + coordinates link to Google Maps.
-  - Footer: `Made with ❤️ by <Your Name>` and a warning: `This project is in development. Don’t save sensitive data.`
+  - Timestamp & station info.
+  
 
 ---
 
