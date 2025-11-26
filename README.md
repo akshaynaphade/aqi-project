@@ -17,12 +17,7 @@ Search any city and get real-time AQI, pollutant breakdowns, charts, and environ
 
 </p>
 
----
 
-## 🚀 Live Demo
-🔌 Backend: https://your-backend-url.com  
-🎨 Frontend: https://your-client-url.com  
-⚠️ Make sure backend is running before opening the frontend.
 
 ---
 
@@ -202,6 +197,11 @@ npm run dev
 Open: `http://localhost:5173`
 
 ---
+
+
+## UI Templates and Widgets
+https://www.aqi.in/aqi-widget
+https://purecode.ai/
 
 ## 📜 License
 MIT — free to use and modify.

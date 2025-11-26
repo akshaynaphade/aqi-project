@@ -28,7 +28,7 @@ const AirQualityDashboard = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`https://aqi-project-r329.onrender.com/api/aqi${city}`);
+      const response = await axios.get(`http://localhost:5000/api/aqi/${city}`);
       setAirQualityData(response.data.data);
     } catch (err) {
       console.error(err);
