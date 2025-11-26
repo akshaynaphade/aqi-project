@@ -24,21 +24,14 @@ Search any city and get real-time AQI, pollutant breakdowns, charts, and environ
 
 ---
 
-## 🌈 Repository Banner
-*(Optional)*  
-`![AQI Banner](BANNER_IMAGE_URL)`
-
----
-
 ## 📸 Screenshots / Project Images
 
 Example gallery (replace with your links):
 
-| Dashboard Preview | Search Screen | Pollutant Modal |
+| Dashboard Preview | Pollutant Modal | Features |
 |-------------------|---------------|------------------|
 | ![Dash](screenshots/Capture11.PNG) | ![Info](screenshots/Capture22.PNG) | ![Features](screenshots/Capture33.PNG) |
 
-**Tip:** GitHub will render images on the README automatically when you push the files. You can also use relative paths to images stored in `/client/public/screenshots/`.
 
 ---
 
@@ -72,6 +65,112 @@ GET /api/aqi/:city
 Returns: AQI, pollutant breakdowns, recommendations & coordinates.
 
 ---
+## 🔌 Backend — API Documentation (Server: `server/`)
+
+### Base URL (local)
+```
+http://localhost:5000/api
+```
+
+### Authentication to external API
+We use the **AQICN (World Air Quality Project)** API. Get a token from https://aqicn.org/api/
+Place your token in the server `.env` file as `AQI_API_TOKEN`.
+
+Example `.env` (server/.env):
+```
+PORT=5000
+AQI_API_TOKEN=your_aqicn_token_here
+CACHE_MAX_ENTRIES=50
+CACHE_TTL_MINUTES=30
+```
+
+### Endpoint: Get AQI by city
+```
+GET /api/aqi/:city
+```
+- `:city` path param — required. Use city name or location slug (e.g., `mumbai`, `new york`).
+- Response is JSON with AQI, pollutant breakdown, coordinates, timestamp, and cache metadata.
+
+#### Query example (curl)
+```bash
+curl "http://localhost:5000/api/aqi/mumbai"
+```
+
+#### Successful response (200)
+```json
+{
+  "city": "Mumbai",
+  "station": "Mumbai - Colaba",
+  "aqi": 142,
+  "category": "Unhealthy for Sensitive Groups",
+  "dominantPollutant": "pm25",
+  "coordinates": { "lat": 18.9220, "lon": 72.8347 },
+  "pollutants": {
+    "pm25": 142,
+    "pm10": 88,
+    "no2": 54,
+    "so2": 18,
+    "o3": 40,
+    "co": 12
+  },
+  "health_insights": "Sensitive groups should reduce prolonged or heavy exertion.",
+  "timestamp": "2025-02-11T12:45:00Z",
+  "cached": true
+}
+```
+
+#### Error responses
+- `400 Bad Request` — Missing or invalid city param.
+- `404 Not Found` — No data available for the requested city.
+- `502 Bad Gateway` — External API returned an error/unavailable.
+- `500 Internal Server Error` — Unexpected server error (check server logs).
+
+#### Implementation notes (server side)
+- The backend **proxies** requests to AQICN: `https://api.waqi.info/feed/{city}/?token=TOKEN`.
+- The server **parses** the vendor response and returns a simplified, consistent JSON shape for the frontend.
+- The server handles rate-limiting errors from AQICN and surfaces a `502` with a user-friendly message.
+
+---
+
+## 🧠 Caching Strategy (required by assignment)
+A caching layer is implemented to reduce calls to AQICN and improve performance for repeated queries.
+
+**Parameters (configurable via env):**
+- `CACHE_MAX_ENTRIES` (default: 50) — maximum number of city entries in cache.
+- `CACHE_TTL_MINUTES` (default: 30) — how long an entry stays valid.
+
+**Behaviour:**
+- On `GET /api/aqi/:city`, the server first checks the cache:
+  - If a **valid** cached entry exists (not expired) → return cached response with `cached: true`.
+  - If not found or expired → fetch from AQICN, store transformed response in cache, return with `cached: false`.
+- Eviction policy: **Least Recently Used (LRU)** or FIFO depending on implementation – recommended: LRU for real workloads.
+- Cache stored in-memory by default; the code is abstracted so swapping to Redis is straightforward (just replace the cache adapter).
+
+Edge cases handled:
+- Cache miss + external API failure → return `502` and **do not** write to cache.
+- If cache is full, evict least recently used entry before inserting new one.
+- TTL countdown starts at moment of successful external API fetch.
+
+---
+
+## ⚙️ Frontend (`client/`)
+- Built with React (Vite) and TailwindCSS for rapid dev and responsive design.
+- Main features:
+  - Search box with debounce (300ms) and simple client-side suggestions.
+  - AQI card showing numeric AQI, color-coded category (Good→Hazardous), and dominant pollutant.
+  - Pollutant breakdown (PM2.5, PM10, NO₂, SO₂, O₃, CO) with a bar chart (e.g., Chart.js or Recharts).
+  - Timestamp & station info + coordinates link to Google Maps.
+  - Footer: `Made with ❤️ by <Your Name>` and a warning: `This project is in development. Don’t save sensitive data.`
+
+---
+
+## ✅ Edge Cases & Error Handling (frontend + backend)
+- Empty search → show inline hint `Please type a city name` (400-level UX feedback).
+- Unknown city → show `No data found for "CITY"` (maps to backend 404).
+- External API rate limit exceeded → show user-friendly message: `External service temporarily unavailable. Try again later.`
+- Partial data (some pollutant keys missing) → render available keys and show `—` for missing values.
+- Network offline → frontend detects `navigator.onLine === false` and shows `You appear offline.` hint.
+
 
 ## 🔧 Run Locally
 
