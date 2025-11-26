@@ -200,7 +200,7 @@ Open: `http://localhost:5173`
 
 
 ## UI Templates and Widgets
-https://www.aqi.in/aqi-widget
+https://www.aqi.in/aqi-widget , 
 https://purecode.ai/
 
 ## 📜 License
